@@ -9,8 +9,12 @@
   "dependencies": {
     "@codesandbox/sandpack-react": "^0.10.6",
     "@monaco-editor/react": "^4.3.1",
+    "monaco-editor": "^0.31.1",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "y-monaco": "^0.1.2",
+    "y-webrtc": "^10.2.2",
+    "yjs": "^13.5.22"
   },
   "devDependencies": {
     "@types/react": "^17.0.33",

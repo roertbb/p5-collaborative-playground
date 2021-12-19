@@ -6,24 +6,42 @@ import {
 } from "@codesandbox/sandpack-react";
 import { CustomEditor } from "./CustomEditor";
 
-const initCode = `import p5 from 'p5';
-
+const initCode = `
 let x = 0;
 
 function setup() {
-  // console.log("setup()");
   createCanvas(300, 300);
 }
 
 function draw() {
-  // console.log("draw()", x);
   background(220);
   rect(x, 20, 25, 25);
   x++;
 }
+`;
 
-window.setup = setup 
-window.draw = draw
+const wrapperCode = `
+import p5 from 'p5';
+
+const fs = require('fs')
+const path = require('path')
+const content = fs.readFileSync("index.js", 'utf8')
+
+const bindings = \`
+if (draw) {
+  if (window.draw) draw()
+  window.draw = draw
+}
+
+if (setup) {
+  if (window.setup) setup()
+  window.setup = setup
+}
+\`
+
+if (content) { 
+  (new Function(content+bindings))() 
+}
 `;
 
 function App() {
@@ -31,12 +49,16 @@ function App() {
     <div>
       <SandpackProvider
         customSetup={{
-          entry: "/index.js",
+          entry: "/wrapper.js",
           dependencies: { p5: "latest" },
           files: {
             "/index.js": {
               code: initCode,
               active: true,
+            },
+            "/wrapper.js": {
+              code: wrapperCode,
+              hidden: true,
             },
           },
         }}
