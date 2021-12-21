@@ -1,3 +1,8 @@
+export const emptyTemplate = `
+function setup() {}
+function draw() {}
+`;
+
 export const initCode = `
 let x = 0;
 
