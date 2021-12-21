@@ -1,11 +1,30 @@
+.sandbox-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-wrapper {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  padding: 8px;
+}
+
 #monaco-editor {
   width: 100%;
   height: 600px;
   border: 1px solid #ccc;
 }
+
+.sp-preview-container,
+.sp-preview-iframe {
+  width: 100%;
+}
+
 .yRemoteSelection {
   background-color: rgb(250, 129, 0, 0.5);
 }
+
 .yRemoteSelectionHead {
   position: absolute;
   border-left: orange solid 2px;
@@ -14,6 +33,7 @@
   height: 100%;
   box-sizing: border-box;
 }
+
 .yRemoteSelectionHead::after {
   position: absolute;
   content: " ";

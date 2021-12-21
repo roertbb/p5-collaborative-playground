@@ -4,45 +4,9 @@ import {
   SandpackProvider,
   SandpackThemeProvider,
 } from "@codesandbox/sandpack-react";
-import { CustomEditor } from "./CustomEditor";
-
-const initCode = `
-let x = 0;
-
-function setup() {
-  createCanvas(300, 300);
-}
-
-function draw() {
-  background(220);
-  rect(x, 20, 25, 25);
-  x++;
-}
-`;
-
-const wrapperCode = `
-import p5 from 'p5';
-
-const fs = require('fs')
-const path = require('path')
-const content = fs.readFileSync("index.js", 'utf8')
-
-const bindings = \`
-if (draw) {
-  if (window.draw) draw()
-  window.draw = draw
-}
-
-if (setup) {
-  if (window.setup) setup()
-  window.setup = setup
-}
-\`
-
-if (content) { 
-  (new Function(content+bindings))() 
-}
-`;
+import { CustomEditor } from "./components/CustomEditor";
+import { initCode, wrapperCode } from "./code";
+import "./App.css";
 
 function App() {
   return (
@@ -64,12 +28,7 @@ function App() {
         }}
       >
         <SandpackThemeProvider>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "50% 50%",
-            }}
-          >
+          <div className="sandpack-wrapper">
             <CustomEditor />
             <SandpackPreview />
           </div>
