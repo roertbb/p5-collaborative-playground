@@ -6,22 +6,17 @@ import {
 } from "@codesandbox/sandpack-react";
 import "./SandpackWrapper.css";
 import { CustomEditor } from "./CustomEditor";
-import { emptyTemplate, wrapperCode } from "../code";
 
 export function SandpackWrapper() {
   return (
     <SandpackProvider
       customSetup={{
-        entry: "/wrapper.js",
+        entry: "/index.js",
         dependencies: { p5: "latest" },
         files: {
           "/index.js": {
-            code: emptyTemplate,
+            code: "",
             active: true,
-          },
-          "/wrapper.js": {
-            code: wrapperCode,
-            hidden: true,
           },
         },
       }}
@@ -29,7 +24,10 @@ export function SandpackWrapper() {
       <SandpackThemeProvider>
         <div className="sandpack-wrapper">
           <CustomEditor />
-          <SandpackPreview />
+          <SandpackPreview
+            showOpenInCodeSandbox={false}
+            showRefreshButton={false}
+          />
         </div>
       </SandpackThemeProvider>
     </SandpackProvider>

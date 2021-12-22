@@ -6,13 +6,10 @@ import { WebrtcProvider } from "y-webrtc";
 import { MonacoBinding } from "y-monaco";
 import * as monaco from "monaco-editor";
 import { useParams } from "react-router";
-import { initCode } from "../code";
+import { sampleCode } from "../code";
 import "./CustomEditor.css";
 
 export function CustomEditor() {
-  const editorRef = React.useRef<monaco.editor.IStandaloneCodeEditor | null>(
-    null
-  );
   const { code, updateCode } = useActiveCode();
   const params = useParams();
 
@@ -33,10 +30,7 @@ export function CustomEditor() {
     }
   }
 
-  function setTemplateCode() {
-    editorRef.current?.getModel()?.setValue(initCode);
-    updateCode(initCode);
-  }
+  const setTemplateCode = () => updateCode(sampleCode);
 
   return (
     <div className="sandbox-wrapper">
@@ -45,13 +39,10 @@ export function CustomEditor() {
         defaultLanguage="javascript"
         value={code}
         onChange={(value = "") => updateCode(value)}
-        onMount={(editor) => {
-          editorRef.current = editor;
-          connect(editor);
-        }}
+        onMount={(editor) => connect(editor)}
       />
-      <div>
-        <button onClick={setTemplateCode}>Set example template</button>
+      <div className="sample-wrapper">
+        <button onClick={setTemplateCode}>Set sample code</button>
       </div>
     </div>
   );
