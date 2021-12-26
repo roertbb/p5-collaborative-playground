@@ -6,14 +6,20 @@ import {
 } from "@codesandbox/sandpack-react";
 import "./SandpackWrapper.css";
 import { CustomEditor } from "./CustomEditor";
+import { wrapperCode } from "../code";
+import "@codesandbox/sandpack-react/dist/index.css";
 
 export function SandpackWrapper() {
   return (
     <SandpackProvider
       customSetup={{
-        entry: "/index.js",
+        entry: "/wrapper.js",
         dependencies: { p5: "latest" },
         files: {
+          "/wrapper.js": {
+            code: wrapperCode,
+            hidden: true,
+          },
           "/index.js": {
             code: "",
             active: true,

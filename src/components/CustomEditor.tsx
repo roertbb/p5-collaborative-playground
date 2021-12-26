@@ -6,7 +6,7 @@ import { WebrtcProvider } from "y-webrtc";
 import { MonacoBinding } from "y-monaco";
 import * as monaco from "monaco-editor";
 import { useParams } from "react-router";
-import { sampleCode } from "../code";
+import { exampleCode } from "../code";
 import "./CustomEditor.css";
 
 export function CustomEditor() {
@@ -30,7 +30,7 @@ export function CustomEditor() {
     }
   }
 
-  const setTemplateCode = () => updateCode(sampleCode);
+  const setTemplateCode = () => updateCode(exampleCode);
 
   return (
     <div className="sandbox-wrapper">

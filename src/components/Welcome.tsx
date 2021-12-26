@@ -5,9 +5,9 @@ import { v4 } from "uuid";
 export function WelcomePage() {
   const navigate = useNavigate();
 
-  return (
-    <div>
-      <button onClick={() => navigate(v4())}>Create new sandbox</button>
-    </div>
-  );
+  React.useEffect(() => {
+    navigate(v4());
+  }, []);
+
+  return <div>Create new p5.js collaboration sandbox</div>;
 }
